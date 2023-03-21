@@ -97,7 +97,7 @@ void calcMedian()
     cout << "median = " << median << endl;
 }
 
-void inputAndPrintStudentInfo() 
+void inputAndPrintStudentInfo()
 {
     vector<Student_info> students;
     Student_info record;
@@ -108,8 +108,8 @@ void inputAndPrintStudentInfo()
         maxlen = std::max(maxlen, record.name.size());
         students.push_back(record);
     }
-    
-    sort(students.begin(),students.end(), compare);
+
+    sort(students.begin(), students.end(), compare);
 
     vector<Student_info> fails = extra_fails(students);
 
@@ -124,11 +124,11 @@ void inputAndPrintStudentInfo()
             streamsize prec = cout.precision();
             cout << setprecision(3) << final_grade << setprecision(prec);
         }
-        catch(const std::exception& e)
+        catch (const std::exception &e)
         {
             cout << e.what();
         }
-        
+
         cout << endl;
     }
 
@@ -143,17 +143,17 @@ void inputAndPrintStudentInfo()
             streamsize prec = cout.precision();
             cout << setprecision(3) << final_grade << setprecision(prec);
         }
-        catch(const std::exception& e)
+        catch (const std::exception &e)
         {
             cout << e.what();
         }
-        
+
         cout << endl;
     }
 }
 
-//字符串单词分割
-vector<string> split(const string& s)
+// 字符串单词分割
+vector<string> split(const string &s)
 {
     vector<string> ret;
     typedef string::size_type string_size;
@@ -163,11 +163,11 @@ vector<string> split(const string& s)
     {
         while (i != s.size() && isspace(s[i]))
             ++i;
-        
+
         string_size j = i;
         while (j != s.size() && !isspace(s[j]))
             ++j;
-        
+
         if (i != j)
         {
             ret.push_back(s.substr(i, j));
