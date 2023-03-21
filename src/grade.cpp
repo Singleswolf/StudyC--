@@ -31,3 +31,8 @@ double median(std::vector<double> vec)
     vec_sz mid = vec.size() / 2;
     return mid % 2 == 0 ? (vec[mid] + vec[mid - 1]) / 2 : vec[mid];
 }
+
+bool fgrade(const Student_info &s)
+{
+    return grade(s) < 60;
+}

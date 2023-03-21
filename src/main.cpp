@@ -110,6 +110,9 @@ void inputAndPrintStudentInfo()
     
     sort(students.begin(),students.end(), compare);
 
+    vector<Student_info> fails = extra_fails(students);
+
+    cout << "print sgrade students" << endl;
     for (vector<Student_info>::size_type i = 0; i < students.size(); i++)
     {
         cout << std::setw(maxlen + 1) << students[i].name << ": ";
@@ -117,6 +120,25 @@ void inputAndPrintStudentInfo()
         try
         {
             double final_grade = grade(students[i]);
+            streamsize prec = cout.precision();
+            cout << setprecision(3) << final_grade << setprecision(prec);
+        }
+        catch(const std::exception& e)
+        {
+            cout << e.what();
+        }
+        
+        cout << endl;
+    }
+
+    cout << "print fgrade students" << endl;
+    for (vector<Student_info>::size_type i = 0; i < fails.size(); i++)
+    {
+        cout << std::setw(maxlen + 1) << fails[i].name << ": ";
+
+        try
+        {
+            double final_grade = grade(fails[i]);
             streamsize prec = cout.precision();
             cout << setprecision(3) << final_grade << setprecision(prec);
         }
