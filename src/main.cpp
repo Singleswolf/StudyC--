@@ -5,6 +5,7 @@
 #include <vector>
 #include "student_info.h"
 #include "grade.h"
+#include <cctype>
 
 using std::cin;
 using std::cout;
@@ -149,6 +150,31 @@ void inputAndPrintStudentInfo()
         
         cout << endl;
     }
+}
+
+//字符串单词分割
+vector<string> split(const string& s)
+{
+    vector<string> ret;
+    typedef string::size_type string_size;
+    string_size i = 0;
+
+    while (i != s.size())
+    {
+        while (i != s.size() && isspace(s[i]))
+            ++i;
+        
+        string_size j = i;
+        while (j != s.size() && !isspace(s[j]))
+            ++j;
+        
+        if (i != j)
+        {
+            ret.push_back(s.substr(i, j));
+            i = j;
+        }
+    }
+    return ret;
 }
 
 int main(int, char **)

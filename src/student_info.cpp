@@ -1,4 +1,5 @@
 #include "Student_info.h"
+#include "grade.h"
 bool compare(const Student_info &x, const Student_info &y)
 {
     return x.name < y.name;
@@ -36,12 +37,12 @@ std::istream &read_hw(std::istream &in, std::vector<double> &hw)
 std::vector<Student_info> extra_fails(std::vector<Student_info> &students)
 {
     std::vector<Student_info> fails;
-    std::vector<Student_info>::iterator iter = students.bengin();
+    std::vector<Student_info>::iterator iter = students.begin();
     while (iter != students.end())
     {
-        if (fgrade((*iter)))
+        if (fgrade(*iter))
         {
-            fails.push_back((*iter));
+            fails.push_back(*iter);
             iter = students.erase(iter); // 删除不及格学生
         }
         else
