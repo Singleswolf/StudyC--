@@ -3,6 +3,8 @@
 #include <iomanip>
 #include <algorithm>
 #include <vector>
+#include "student_info.h"
+#include "grade.h"
 
 using std::cin;
 using std::cout;
@@ -94,6 +96,39 @@ void calcMedian()
     cout << "median = " << median << endl;
 }
 
+void inputAndPrintStudentInfo() 
+{
+    vector<Student_info> students;
+    Student_info record;
+    string::size_type maxlen = 0;
+
+    while (read(cin, record))
+    {
+        maxlen = std::max(maxlen, record.name.size());
+        students.push_back(record);
+    }
+    
+    sort(students.begin(),students.end(), compare);
+
+    for (vector<Student_info>::size_type i = 0; i < students.size(); i++)
+    {
+        cout << std::setw(maxlen + 1) << students[i].name << ": ";
+
+        try
+        {
+            double final_grade = grade(students[i]);
+            streamsize prec = cout.precision();
+            cout << setprecision(3) << final_grade << setprecision(prec);
+        }
+        catch(const std::exception& e)
+        {
+            cout << e.what();
+        }
+        
+        cout << endl;
+    }
+}
+
 int main(int, char **)
 {
     // 打印输入字符串
@@ -105,4 +140,7 @@ int main(int, char **)
     // 排序计算中值
     //  calcMedian();
 
+    // 输入学生成绩和打印最终成绩结果
+    // inputAndPrintStudentInfo();
+    return 0;
 }

@@ -9,7 +9,11 @@ message(STATUS "C++11 support has been enabled by default.")
 include(CTest)
 enable_testing()
 
-add_executable(StudyC++ main.cpp)
+include_directories(include)
+
+AUX_SOURCE_DIRECTORY(src SRC)
+
+add_executable(StudyC++ ${SRC})
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
