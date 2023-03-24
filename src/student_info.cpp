@@ -1,5 +1,6 @@
 #include "Student_info.h"
 #include "grade.h"
+#include <algorithm>
 bool compare(const Student_info &x, const Student_info &y)
 {
     return x.name < y.name;
@@ -36,8 +37,8 @@ std::istream &read_hw(std::istream &in, std::vector<double> &hw)
 
 std::vector<Student_info> extra_fails(std::vector<Student_info> &students)
 {
+    /* std::vector<Student_info>::iterator iter = students.begin();
     std::vector<Student_info> fails;
-    std::vector<Student_info>::iterator iter = students.begin();
     while (iter != students.end())
     {
         if (fgrade(*iter))
@@ -49,6 +50,17 @@ std::vector<Student_info> extra_fails(std::vector<Student_info> &students)
         {
             ++iter;
         }
-    }
+    } */
+
+    /* std::vector<Student_info> fails;
+    // remove_copy_if “remove”(剔除)符合pgrade条件元素，只copy不符合元素
+    std::remove_copy_if(students.begin(), students.end(), std::back_inserter(fails), pgrade);
+    // remove_if 移除符合条件的元素，后续符合的元素移动替换移除元素位置空间
+    students.erase(std::remove_if(students.begin(), students.end(), fgrade), students.end()); */
+
+    //stable_partition 对容器分组，第一组为符合条件，第二组为不符合条件，返回的迭代器指向第二组头元素
+    std::vector<Student_info>::iterator iter = std::stable_partition(students.begin(), students.end(), pgrade);
+    std::vector<Student_info> fails(iter, students.end());
+    students.erase(iter, students.end());
     return fails;
 }
