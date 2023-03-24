@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(StudyC++)
+project(StudyCXX)
 
 # Use C++11
 set(CMAKE_CXX_STANDARD 11)
@@ -13,7 +13,7 @@ include_directories(include)
 
 AUX_SOURCE_DIRECTORY(src SRC)
 
-add_executable(StudyC++ ${SRC})
+add_executable(StudyCXX ${SRC})
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
