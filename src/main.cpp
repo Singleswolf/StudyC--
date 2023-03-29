@@ -6,6 +6,7 @@
 #include "student_info.h"
 #include "grade.h"
 #include <cctype>
+#include <Vec.h>
 
 using std::cin;
 using std::cout;
@@ -71,6 +72,9 @@ void printPrecisionNum()
 
 using std::vector;
 typedef vector<double>::size_type vec_sz;
+
+void testVec();
+
 void calcMedian()
 {
     cout << "Please enter double num list:";
@@ -177,6 +181,20 @@ vector<string> split(const string &s)
     return ret;
 }
 
+void testVec() {
+    Vec<int> vec;
+    vec.push_back(1);
+    vec.push_back(2);
+    vec.push_back(3);
+    vec.push_back(4);
+    vec.push_back(5);
+    cout << "size=" << vec.size() << endl;
+    vec.print_vec(cout);
+    vec.erase(vec.begin());
+    cout << "size=" << vec.size() << endl;
+    vec.print_vec(cout);
+}
+
 int main(int, char **)
 {
     // 打印输入字符串
@@ -190,5 +208,8 @@ int main(int, char **)
 
     // 输入学生成绩和打印最终成绩结果
     // inputAndPrintStudentInfo();
+
+    // Vec test
+    // testVec();
     return 0;
 }
