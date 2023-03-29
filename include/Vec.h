@@ -15,7 +15,7 @@ public:
     typedef T *iterator;
     typedef const T *const_iterator;
     typedef size_t size_type;
-    typedef T type_value;
+    typedef T value_type;//值类型
 
     size_type size() const { return avail - data; }
 
@@ -33,7 +33,7 @@ public:
 
     iterator erase(iterator b, iterator e);
 
-    bool isempty() { return !data };
+    bool isempty() { return !data; };
 
     void clear();
 
