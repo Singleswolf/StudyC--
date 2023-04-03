@@ -7,7 +7,6 @@
 
 #include <cstddef>
 #include <memory>
-#include <iostream>
 
 template<class T>
 class Vec {
@@ -201,7 +200,7 @@ template<class T>
 void Vec<T>::clear() {
     iterator it = avail;
     while (it != data) {
-        alloc.alloc.destroy(--it);
+        alloc.destroy(--it);
     }
     avail = data;
 }

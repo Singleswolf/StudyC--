@@ -7,14 +7,14 @@
 #include "grade.h"
 #include <cctype>
 #include <Vec.h>
+#include <Str.h>
 
 using std::cin;
 using std::cout;
 using std::endl;
 using std::string;
 
-void printEnterName()
-{
+void printEnterName() {
     cout << "Please enter your name: ";
     string name;
     cin >> name;
@@ -27,24 +27,16 @@ void printEnterName()
     // 列数
     const string::size_type cols = greeting.size() + pad * 2 + 2;
 
-    for (int r = 0; r != rows; r++)
-    {
+    for (int r = 0; r != rows; r++) {
         string::size_type c = 0;
-        while (c != cols)
-        {
-            if (r == pad + 1 && c == pad + 1)
-            {
+        while (c != cols) {
+            if (r == pad + 1 && c == pad + 1) {
                 cout << greeting;
                 c += greeting.size();
-            }
-            else
-            {
-                if (c == 0 || r == 0 || c == cols - 1 || r == rows - 1)
-                {
+            } else {
+                if (c == 0 || r == 0 || c == cols - 1 || r == rows - 1) {
                     cout << "*";
-                }
-                else
-                {
+                } else {
                     cout << " ";
                 }
                 c++;
@@ -56,8 +48,8 @@ void printEnterName()
 
 using std::setprecision;
 using std::streamsize;
-void printPrecisionNum()
-{
+
+void printPrecisionNum() {
     double num = 12.5647896;
     streamsize prec = cout.precision(); // 返回原来的精度值
     cout << "精度为3 num = " << setprecision(3) /* 设置精度为3 */ << num << setprecision(prec) /* 恢复原来的精度 */ << endl;
@@ -75,19 +67,16 @@ typedef vector<double>::size_type vec_sz;
 
 void testVec();
 
-void calcMedian()
-{
+void calcMedian() {
     cout << "Please enter double num list:";
 
     vector<double> vec;
     double x;
-    while (cin >> x)
-    {
+    while (cin >> x) {
         vec.push_back(x);
     }
     vec_sz size = vec.size();
-    if (size == 0)
-    {
+    if (size == 0) {
         cout << "you must enter double num";
         return;
     }
@@ -101,14 +90,12 @@ void calcMedian()
     cout << "median = " << median << endl;
 }
 
-void inputAndPrintStudentInfo()
-{
+void inputAndPrintStudentInfo() {
     vector<Student_info> students;
     Student_info record;
     string::size_type maxlen = 0;
 
-    while (read(cin, record))
-    {
+    while (read(cin, record)) {
         maxlen = std::max(maxlen, record.name.size());
         students.push_back(record);
     }
@@ -118,18 +105,15 @@ void inputAndPrintStudentInfo()
     vector<Student_info> fails = extra_fails(students);
 
     cout << "print sgrade students" << endl;
-    for (vector<Student_info>::size_type i = 0; i < students.size(); i++)
-    {
+    for (vector<Student_info>::size_type i = 0; i < students.size(); i++) {
         cout << std::setw(maxlen + 1) << students[i].name << ": ";
 
-        try
-        {
+        try {
             double final_grade = grade(students[i]);
             streamsize prec = cout.precision();
             cout << setprecision(3) << final_grade << setprecision(prec);
         }
-        catch (const std::exception &e)
-        {
+        catch (const std::exception &e) {
             cout << e.what();
         }
 
@@ -137,18 +121,15 @@ void inputAndPrintStudentInfo()
     }
 
     cout << "print fgrade students" << endl;
-    for (vector<Student_info>::size_type i = 0; i < fails.size(); i++)
-    {
+    for (vector<Student_info>::size_type i = 0; i < fails.size(); i++) {
         cout << std::setw(maxlen + 1) << fails[i].name << ": ";
 
-        try
-        {
+        try {
             double final_grade = grade(fails[i]);
             streamsize prec = cout.precision();
             cout << setprecision(3) << final_grade << setprecision(prec);
         }
-        catch (const std::exception &e)
-        {
+        catch (const std::exception &e) {
             cout << e.what();
         }
 
@@ -157,14 +138,12 @@ void inputAndPrintStudentInfo()
 }
 
 // 字符串单词分割
-vector<string> split(const string &s)
-{
+vector<string> split(const string &s) {
     vector<string> ret;
     typedef string::size_type string_size;
     string_size i = 0;
 
-    while (i != s.size())
-    {
+    while (i != s.size()) {
         while (i != s.size() && isspace(s[i]))
             ++i;
 
@@ -172,8 +151,7 @@ vector<string> split(const string &s)
         while (j != s.size() && !isspace(s[j]))
             ++j;
 
-        if (i != j)
-        {
+        if (i != j) {
             ret.push_back(s.substr(i, j));
             i = j;
         }
@@ -194,9 +172,17 @@ void testVec() {
     cout << "size=" << vec.size() << endl;
     vec.print_vec(cout);
 }
+void testStr() {
+    Str str;
+    Str str1;
+    cin >> str >> str1;
+    cout << str << endl;
+    cout << str1 << endl;
+    Str s = str + str1;
+    cout << s << endl;
+}
 
-int main(int, char **)
-{
+int main(int, char **) {
     // 打印输入字符串
     //  printEnterName();
 
@@ -211,5 +197,8 @@ int main(int, char **)
 
     // Vec test
     // testVec();
+
+//    Str test
+//    testStr();
     return 0;
 }
